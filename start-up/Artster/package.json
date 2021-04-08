@@ -1,0 +1,14 @@
+{
+  "name": "artster",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Lucas Axelson\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[DCreate a package.json\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B",
+  "license": "ISC",
+  "dependencies": {
+    "figlet": "^1.5.0"
+  }
+}
