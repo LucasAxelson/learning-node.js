@@ -12,13 +12,18 @@ const app = express()
 
 app.get('/', (req, res) => {
     res.send(`Home page`)
-    console.log(`/ request`)
+    console.log(`/ request.`)
 })
 
 app.get('/r/:subreddit', (req, res) => {
     console.log(req.params)
     const { subreddit } = req.params
     res.send(`<h1>This is the ${subreddit} subreddit.</h1>`)
+})
+
+app.get('/r/:subreddit/:postId', (req, res) => {
+    const { subreddit, postId } = req.params
+    res.send(`<h1>Viewing ${subreddit}'s Post ID: ${postId}</h1>`)
 })
 
 app.post(`/cats`, (res, req) => {
