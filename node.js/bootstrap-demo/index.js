@@ -8,13 +8,6 @@ app.use(express.static(path.join(__dirname, 'public')))
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, '/views'))
 
-app.get('/cats', (req, res) => {
-    const cats = [
-        'Blue', 'Rocket', 'Monty', 'Stephanie', 'Winston'
-    ]
-    res.render('cats', { cats })
-})
-
 app.get('/r/:subreddit', (req, res) => {
     const { subreddit } = req.params;
     const data = redditData[subreddit];
