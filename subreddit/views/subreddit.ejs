@@ -1,12 +1,13 @@
 <%- include('partials/head') %> 
   <%- include('partials/navbar') %> 
 
-    <div style="margin: 2rem">
+    <section>
       <h1>Welcome to <%= name %> </h1>
       <h2><%= description %> </h2>
       <p><%= subscribers %> Total subscribers</p>
      <hr>
-
+    </section>
+    <section>
      <% for(let post of posts) { %>
          <article>
               <p> <%= post.title  %> <b>Posted by <%= post.author %> </b></p>
@@ -15,6 +16,6 @@
              <% } %> 
           </article>
      <% } %>
-        </div> 
+    </section> 
 
 <%- include('partials/footer') %> 
