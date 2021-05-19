@@ -2,10 +2,27 @@ const bodyParser = require("body-parser")
 const express = require("express")
 const app = express()
 
+function BMIcalc(mass, height) {
+    let BMI = mass / height ** 2
+    return BMI.toFixed(2)
+}
+
 app.use(bodyParser.urlencoded({extended: true}))
 
 app.get("/", (req,res) => {
     res.sendFile(__dirname + "/index.html")
+})
+
+app.get("/bmi", (req,res) => {
+    res.sendFile(__dirname + "/bmiCalculator.html")
+})
+
+app.post("/bmicalculator", (req,res) => {
+    const weight = req.body.weight
+    const height = req.body.height
+
+    const BMI = BMIcalc(weight, height)
+    res.send("Your BMI is: " + BMI)
 })
 
 app.post("/", (req,res) => {
