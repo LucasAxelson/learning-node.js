@@ -1,0 +1,15 @@
+body {
+  margin: 8rem;
+}
+
+.inputs {
+  height: 50px;
+}
+
+img {
+  box-shadow: 0 0 0 6px black;
+  border: 3px solid white;
+
+  height: 100px;
+  width: 150px;
+}

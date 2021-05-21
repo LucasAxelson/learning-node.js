@@ -7,6 +7,8 @@ app.listen(4040, () => {
     console.log(`Online`)
 })
 
+app.use(express.static("public"))
+
 app.get("/", (req,res) => {
     res.sendFile(__dirname + `/signup.html`)
 })
