@@ -7,6 +7,21 @@
     <title>Weather Report</title>
 </head>
 <body>
-    
+    <form class="" action="/" method="POST">
+
+        <div class="cityDiv" style="margin-bottom: 10px;">   
+            <label for="cityInput">City Name:</label>
+            <input id="cityInput" type="text" name="cityName">
+       </div>
+
+           <label for="unitInput">Unit type:</label>
+           <select id="unitInput" name="unitType">
+               <option value="metric">Celsius</option>
+               <option value="imperial">Farenheit</option>
+               <option value="standard">Kelvin</option>
+            </select>
+
+        <button type="submit">Submit</button>
+    </form>
 </body>
 </html>
