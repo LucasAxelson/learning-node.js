@@ -9,22 +9,22 @@
   <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
-    <form action="">
+    <form action="/" method="POST">
         <div class="container text-center">
-            <img src="/images/example.png" alt="">
+            <img class="companyLogo" src="/images/example.png" alt="">
             <h1 class="my-5">Sign-up to my Newsletter!</h1>
 
 
     <div class="d-flex flex-column">
-      <input class="inputs fs-4 w-50 mb-2 text-center align-self-center" id="firstInput" placeholder="First Name" type="text">
+      <input class="inputs fs-4 w-50 mb-2 text-center align-self-center" name="fNameInput" placeholder="First Name" type="text" required autofocus>
     </div>
 
       <div class="d-flex flex-column">
-      <input class="inputs fs-4 w-50 mb-2 text-center align-self-center" id="lastInput" placeholder="Last Name" type="text">
+      <input class="inputs fs-4 w-50 mb-2 text-center align-self-center" name="lNameInput" placeholder="Last Name" type="text" required>
     </div>
 
     <div class="d-flex flex-column">
-        <input class="inputs fs-4 w-50 mb-2 text-center align-self-center" id="emailInput" placeholder="Email" type="email">
+        <input class="inputs fs-4 w-50 mb-2 text-center align-self-center" name="emailInput" placeholder="Email" type="email" required>
       </div>
 
       <button class="btn btn-primary my-2 fs-4" type="submit">Sign Me Up!</button>
