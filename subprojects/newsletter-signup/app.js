@@ -35,7 +35,7 @@ app.post("/", (req,res) => {
 
     const options = {
         method: "POST",
-        auth: "lucas:04d1b0fe180ebf8ceb42086d01249878-us6"
+        auth: "lucas:6f6e6b324552eb2e98170466dc318702-usX"
     }
 
 
@@ -44,6 +44,7 @@ app.post("/", (req,res) => {
             if(response.statusCode === 200) {
                 res.sendFile(__dirname + `/success.html`)
             } else {
+                // res.send(response.statusCode)
                 res.sendFile(__dirname + `/failure.html`)
             }
         })
@@ -52,12 +53,12 @@ app.post("/", (req,res) => {
     request.end()
 })
 
+app.post("/failure", (req,res) => {
+    res.redirect("/")
+})
 
-app.listen(4040, () => {
+app.listen(process.env.PORT || 4040, () => {
     console.log(`Online`)
 })
 
-const apiKey = `	
-04d1b0fe180ebf8ceb42086d01249878-us6
-`
 const listId = `027e106090`
