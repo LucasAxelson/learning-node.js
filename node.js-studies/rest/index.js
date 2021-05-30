@@ -1,6 +1,7 @@
 const express = require('express')
 const app = express()
 const path = require('path');
+const { read } = require(`fs`)
 
 app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
@@ -27,8 +28,18 @@ const comments = [
     }
 ]
 
+// INDEX ROUTE
 app.get(`/comments`, (req,res) => {
     res.render(`comments/index`, { comments })
+})
+
+app.get(`/comments/new`, (req,res) => {
+    res.render(`comments/new`)
+})
+
+app.post(`/comments`, (req, res) => {
+    console.log(req.body)
+    res.send(`Worked`)
 })
 
 app.get('/', (req,res) => {
