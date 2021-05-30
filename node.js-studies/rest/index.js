@@ -1,7 +1,6 @@
 const express = require('express')
 const app = express()
 const path = require('path');
-const { read } = require(`fs`)
 
 app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
@@ -22,10 +21,6 @@ const comments = [
         username: `William`,
         comment: `Ugh. Not cool, brah.`
     },
-    {
-        username: `Ellis`,
-        comment: `Watah. Tomorra, I go near Southend.`
-    }
 ]
 
 // INDEX ROUTE
@@ -38,8 +33,9 @@ app.get(`/comments/new`, (req,res) => {
 })
 
 app.post(`/comments`, (req, res) => {
-    console.log(req.body)
-    res.send(`Worked`)
+    const { username, comment } = req.body
+    comments.push({ username, comment })
+    res.render(`comments/new`)
 })
 
 app.get('/', (req,res) => {
