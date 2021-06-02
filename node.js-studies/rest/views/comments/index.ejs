@@ -14,5 +14,12 @@
              <li><%= c.comment %> | <b><%= c.username %></b></li>
         <% }  %> 
     </ul>
+    <form action="/comments/new" method="GET">
+        <hr>
+        <div style="margin-top: .25rem;">
+            <span style="margin-right: .25rem;">Create a New Comment</span>
+            <button style="background-color: white;">New</button>
+        </div>
+    </form>
 </body>
 </html>
