@@ -47,7 +47,14 @@ app.get(`/comments/:id`, (req,res) => {
     const {id} = req.params
     const comment = comments.find(c => c.id === id)
     res.render(`comments/show`, {comment})
-    console.log(comment)
+})
+
+app.patch(`/comments/:id`, (req,res) => {
+    const {id} = req.params
+    const newCommentText = req.body.comment 
+    const oldComment = comments.find(c => c.id === id)
+    oldComment.comment = newCommentText
+    res.redirect(`/comments`)
 })
 
 app.get('/', (req,res) => {
