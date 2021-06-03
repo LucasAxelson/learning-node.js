@@ -11,7 +11,9 @@
     <ul>
         <!-- INDEX ROUTE -->
         <% for(let c of comments) { %> 
-             <li><%= c.comment %> | <b><%= c.username %></b></li>
+             <li>
+                 <a href="/comments/<%= c.id %> "><%= c.comment %></a> | <b><%= c.username %></b>
+            </li>
         <% }  %> 
     </ul>
     <form action="/comments/new" method="GET">
