@@ -1,6 +1,8 @@
 const express = require('express')
 const app = express()
 const path = require('path');
+const {v4: uuidv4} = require(`uuid`)
+uuidv4()
 
 app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
@@ -10,17 +12,17 @@ app.set('views', path.join(__dirname, '/views'))
 
 const comments = [
     {
-        id: 1,
+        id: uuidv4(),
         username: `Lucas`,
         comment: `Wow. Cool, brah.`
     },
     {
-        id: 2,
+        id: uuidv4(),
         username: `Jay`,
         comment: `Really? Nice, brah.`
     },
     {
-        id: 3,
+        id: uuidv4(),
         username: `William`,
         comment: `Ugh. Not cool, brah.`
     },
@@ -37,13 +39,13 @@ app.get(`/comments/new`, (req,res) => {
 
 app.post(`/comments`, (req, res) => {
     const { username, comment } = req.body
-    comments.push({ username, comment })
+    comments.push({ username, comment, id: uuidv4() })
     res.redirect(`/comments`)
 })
 
 app.get(`/comments/:id`, (req,res) => {
     const {id} = req.params
-    const comment = comments.find(c => c.id === parseInt(id))
+    const comment = comments.find(c => c.id === id)
     res.render(`comments/show`, {comment})
     console.log(comment)
 })
