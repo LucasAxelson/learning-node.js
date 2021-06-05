@@ -4,12 +4,17 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><%= user.username %>`s Profile</title>
+    <title><%= user.username %>'s Profile</title>
 </head>
 <body>
     <h1 style="font-weight: 100;"><%= user.username %> - <%= user.age() %> years old </h1>
     <h3 style="font-weight: 100;"><b>Date of Birth:</b> <%= user.birthday %> </h3>
     <h3 style="font-weight: 100;"><b>Profession:</b> <%= user.profession %> </h3>
     <a href="/">Return to Index</a>
+<hr>
+    <form method="GET" action="/users/<%= user.id %>/edit">
+        <button type="submit">Edit User</button>
+    </form>
+
 </body>
 </html>
