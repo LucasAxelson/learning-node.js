@@ -10,11 +10,17 @@
     <h1 style="font-weight: 100;"><%= user.username %> - <%= user.age() %> years old </h1>
     <h3 style="font-weight: 100;"><b>Date of Birth:</b> <%= user.birthday %> </h3>
     <h3 style="font-weight: 100;"><b>Profession:</b> <%= user.profession %> </h3>
-    <a href="/">Return to Index</a>
+    <form method="GET" action="/">
+        <button type="submit">Return to Index</button>
+    </form>
+
 <hr>
     <form method="GET" action="/users/<%= user.id %>/edit">
         <button type="submit">Edit User</button>
     </form>
-
+    <hr>
+    <form method="POST" action="/users/<%= user.id %>/?_method=DELETE">
+        <button type="submit">Delete User</button>
+    </form>
 </body>
 </html>

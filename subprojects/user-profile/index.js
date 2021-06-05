@@ -111,6 +111,13 @@ app.patch(`/users/:id`, (req,res) => {
     res.redirect(`/`)
 })
 
+app.delete(`/users/:id`, (req,res) => {
+    const { id } = req.params
+    users  = users.filter(u => u.id !== id)
+    
+    res.redirect(`/`)
+})
+
 app.listen(5050, () => {
     console.log(`Port 5050`)
 })
