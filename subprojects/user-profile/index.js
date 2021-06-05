@@ -12,8 +12,71 @@ app.use(express.json())
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, '/views'))
 
+
+let users = [
+    {
+        id: uuidv4(),
+        username: `LucasAxelson`,
+        birthday: `31/08/2000`,
+        age: function () {
+            let _date = new Date() 
+            let month = parseInt(this.birthday.slice(3, 5))
+            let monthTest = month - _date.getMonth()
+            if(monthTest < 0) {
+                return _date.getFullYear() - parseInt(this.birthday.slice(-4))
+            } else if (monthTest >= 0) {
+                return _date.getFullYear() - parseInt(this.birthday.slice(-4)) - 1
+            }
+        },
+        profession: `Programmer`
+    },
+    {
+        id: uuidv4(),
+        username: `MikeyWilliams`,
+        birthday: `25/03/1978`,
+        age: function () {
+            let _date = new Date() 
+            let month = parseInt(this.birthday.slice(3, 5))
+            let monthTest = month - _date.getMonth()
+            if(monthTest < 0) {
+                return _date.getFullYear() - parseInt(this.birthday.slice(-4))
+            } else if (monthTest >= 0) {
+                return _date.getFullYear() - parseInt(this.birthday.slice(-4)) - 1
+            }
+        },
+        profession: `Carer`
+    },
+    {
+        id: uuidv4(),
+        username: `AlexTyler`,
+        birthday: `28/02/1998`,
+        age: function () {
+            let _date = new Date() 
+            let month = parseInt(this.birthday.slice(3, 5))
+            let monthTest = month - _date.getMonth()
+            if(monthTest < 0) {
+                return _date.getFullYear() - parseInt(this.birthday.slice(-4))
+            } else if (monthTest >= 0) {
+                return _date.getFullYear() - parseInt(this.birthday.slice(-4)) - 1
+            }
+        },
+        profession: `Admin`
+    },
+
+]
+
 app.get(`/`, (req,res) => {
-    res.render(`users/index`)
+    res.render(`users/index`, {users})
+})
+
+app.get(`/users/new`, (req,res) => {
+    
+})
+
+app.get(`/users/:id`, (req,res) => {
+    const { id } = req.params
+    const user  = users.find(u => u.id === id)
+    res.render(`users/show`, {user})
 })
 
 app.listen(5050, () => {
