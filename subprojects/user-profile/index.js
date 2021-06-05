@@ -13,8 +13,9 @@ app.use(express.json())
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, '/views'))
 
-calculateAge = (birthday) => {
-    let _date = new Date() 
+let _date = new Date() 
+
+function calculateAge (birthday) {
     let month = parseInt(birthday.slice(3, 5))
     let monthTest = month - _date.getMonth()
     if(monthTest < 0) {
@@ -24,14 +25,42 @@ calculateAge = (birthday) => {
     }
 }
 
-correctCasing = (profession) => {
+function correctCasing (profession) {
     const lowerCasing = profession.toLowerCase().slice(1)
     const upperCasing = profession.charAt(0).toUpperCase()
     return upperCasing + lowerCasing
 }
 
-correctCasing(`James`)
 
+
+function birthdayVerify (day, month, year) {
+    // if (day <= 0 || month <= 0 || year <= 0) {
+    //     console.log(`Verify provided dates. Use positive numbers e.g. 12/02/2020`)
+    // } 
+    
+    // if (day > 31 || month > 12) {
+    //     console.log(`Please verify the provided day and month.`)
+    // }
+    
+    // if (year <= (_date.getFullYear - 150) || year > _date.getFullYear) {
+    //     console.log(`Please verify your year of birth.`)
+    // }
+
+    let birthday = `${day}/${month}/${year}`
+
+    if(day.length == 1) {
+        day = `0` + day
+        birthday = `${day}/${month}/${year}`
+    }
+    
+    if(month.length == 1) {
+        month = `0` + month
+        birthday = `${day}/${month}/${year}`
+    } 
+    
+    return birthday
+}
+ 
 let users = [
     {
         id: uuidv4(),
@@ -76,7 +105,7 @@ app.post(`/`, (req,res) => {
 
     users.push({
         username, 
-        birthday: `${day}/${month}/${year}`, 
+        birthday: birthdayVerify(day, month, year),
         profession: correctCasing(profession), 
         id: uuidv4(), 
         age: function() {
@@ -104,7 +133,7 @@ app.patch(`/users/:id`, (req,res) => {
     const user  = users.find(u => u.id === id)
     const {username, profession, day, month, year} = req.body
 
-    user.birthday = `${day}/${month}/${year}`
+    user.birthday = birthdayVerify(day, month, year),
     user.username = username
     user.profession = correctCasing(profession)
 
