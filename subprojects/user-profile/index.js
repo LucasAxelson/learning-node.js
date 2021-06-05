@@ -34,6 +34,9 @@ const Utils = {
         return upperCasing + lowerCasing
     },    
     birthdayLength (day, month, year) {
+        day = day.replace(`-`,``)
+        month = month.replace(`-`,``)
+
         let birthday = `${day}/${month}/${year}`
     
         if(day.length == 1) {
@@ -50,11 +53,17 @@ const Utils = {
     }
 }
 
+const Verification = {
+    negativeNumbers(birthday) {
+        birthday = birthday.replace(`-`, ``)
+        birthday = birthday.replace(`-`, ``)
+        birthday = birthday.replace(`-`, ``)
+
+        return birthday
+    }
+}
+
 function birthdayVerify (day, month, year) {
-    if (day <= 0 || month <= 0 || year <= 0) {
-        console.log(`Verify provided dates. Use positive numbers e.g. 12/02/2020`)
-    } 
-    
     // if (day > 31 || month > 12) {
     //     console.log(`Please verify the provided day and month.`)
     // }
@@ -116,6 +125,8 @@ app.post(`/`, (req,res) => {
         }
     }
 
+    user.birthday = Verification.negativeNumbers(user.birthday)
+
     users.push(user)
 
     res.redirect(`/`)
@@ -138,7 +149,10 @@ app.patch(`/users/:id`, (req,res) => {
     const user  = users.find(u => u.id === id)
     const {username, profession, day, month, year} = req.body
 
-    user.birthday = Utils.birthdayVerify(day, month, year),
+    let birthday = Utils.birthdayLength(day, month, year)
+    birthday = Verification.negativeNumbers(birthday)
+    user.birthday = birthday
+
     user.username = Utils.removeUsernameSpacing(username)
     user.profession = Utils.correctProfessionCasing(profession)
 
