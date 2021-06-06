@@ -1,9 +1,12 @@
+// HTTP Requests
 const methodOverride = require(`method-override`)
+// EJS
 const path = require('path');
+// Express
 const express = require(`express`)
 const app = express()
+// UUID 
 const {v4: uuidv4} = require(`uuid`);
-const e = require('express');
 uuidv4()
 
 app.use(methodOverride(`_method`))
@@ -50,10 +53,7 @@ const Utils = {
         } 
         
         return birthday
-    }
-}
-
-const Verification = {
+    },
     negativeNumbers(birthday) {
         birthday = birthday.replace(`-`, ``)
         birthday = birthday.replace(`-`, ``)
@@ -78,7 +78,6 @@ const Verification = {
         } else { return true }
     }    
 }
-
  
 let users = [
     {
@@ -132,11 +131,11 @@ app.post(`/`, (req,res) => {
         }
     }
     // If birthday date is negative, transform values into positives.
-    user.birthday = Verification.negativeNumbers(user.birthday)
+    user.birthday = Utils.negativeNumbers(user.birthday)
     // If day or month is invalid, return undefined
-    let birthdayCheck = Verification.realisticDates(day, month)
+    let birthdayCheck = Utils.realisticDates(day, month)
     // Verify birth year is less than current year and less than 150 years ago.
-    let birthyearCheck = Verification.birthYearVerify(year)
+    let birthyearCheck = Utils.birthYearVerify(year)
 
     if (birthdayCheck === undefined || !birthyearCheck) {
         res.render(`users/new`)
@@ -165,15 +164,15 @@ app.patch(`/users/:id`, (req,res) => {
     const {username, profession, day, month, year} = req.body
 
     // If day or month is invalid, return undefined
-    let birthdayCheck = Verification.realisticDates(day, month)
+    let birthdayCheck = Utils.realisticDates(day, month)
     // Verify birth year is less than current year and less than 150 years ago.
-    let birthyearCheck = Verification.birthYearVerify(year)
+    let birthyearCheck = Utils.birthYearVerify(year)
     if (birthdayCheck === undefined || !birthyearCheck) {
         res.redirect(`/users/${id}/edit`)
     }
     
     let birthday = Utils.birthdayLength(day, month, year)
-    birthday = Verification.negativeNumbers(birthday)
+    birthday = Utils.negativeNumbers(birthday)
     user.birthday = birthday
 
     user.username = Utils.removeUsernameSpacing(username)
