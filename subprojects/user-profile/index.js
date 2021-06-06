@@ -1,13 +1,13 @@
 const methodOverride = require(`method-override`)
 const path = require('path');
-const bodyParser = require(`body-parser`)
 const express = require(`express`)
 const app = express()
-const {v4: uuidv4} = require(`uuid`)
+const {v4: uuidv4} = require(`uuid`);
+const e = require('express');
 uuidv4()
 
 app.use(methodOverride(`_method`))
-app.use(bodyParser.urlencoded({extended: true}))
+app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
 
 app.set('view engine', 'ejs');
@@ -60,18 +60,25 @@ const Verification = {
         birthday = birthday.replace(`-`, ``)
 
         return birthday
-    }
+    },
+    realisticDates (day, month) {
+        if (day < 1 || day > 31) {
+            return undefined
+        }
+
+        if (month < 1 || month > 12) {
+            return undefined
+        }
+
+        return true
+    },
+    birthYearVerify(year) {    
+        if (year <= (_date.getFullYear() - 150) || year > _date.getFullYear()) {
+            return false
+        } else { return true }
+    }    
 }
 
-function birthdayVerify (day, month, year) {
-    // if (day > 31 || month > 12) {
-    //     console.log(`Please verify the provided day and month.`)
-    // }
-    
-    // if (year <= (_date.getFullYear - 150) || year > _date.getFullYear) {
-    //     console.log(`Please verify your year of birth.`)
-    // }
-}
  
 let users = [
     {
@@ -124,12 +131,20 @@ app.post(`/`, (req,res) => {
             return Utils.calculateAge(this.birthday)
         }
     }
-
+    // If birthday date is negative, transform values into positives.
     user.birthday = Verification.negativeNumbers(user.birthday)
+    // If day or month is invalid, return undefined
+    let birthdayCheck = Verification.realisticDates(day, month)
+    // Verify birth year is less than current year and less than 150 years ago.
+    let birthyearCheck = Verification.birthYearVerify(year)
 
-    users.push(user)
+    if (birthdayCheck === undefined || !birthyearCheck) {
+        res.render(`users/new`)
+    } else {
+        users.push(user)
+        res.redirect(`/`)
+    }
 
-    res.redirect(`/`)
 })
 
 app.get(`/users/:id`, (req,res) => {
@@ -149,6 +164,14 @@ app.patch(`/users/:id`, (req,res) => {
     const user  = users.find(u => u.id === id)
     const {username, profession, day, month, year} = req.body
 
+    // If day or month is invalid, return undefined
+    let birthdayCheck = Verification.realisticDates(day, month)
+    // Verify birth year is less than current year and less than 150 years ago.
+    let birthyearCheck = Verification.birthYearVerify(year)
+    if (birthdayCheck === undefined || !birthyearCheck) {
+        res.redirect(`/users/${id}/edit`)
+    }
+    
     let birthday = Utils.birthdayLength(day, month, year)
     birthday = Verification.negativeNumbers(birthday)
     user.birthday = birthday
