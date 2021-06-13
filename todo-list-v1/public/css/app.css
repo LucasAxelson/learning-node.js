@@ -1,5 +1,76 @@
-nav {
+/* GENERAL */
+* {
+  margin: 0;
+  padding: 0;
+}
+
+main {
+  margin: 1rem 2rem;
+}
+
+/* TOP BAR */
+.nav__div {
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
+}
+
+.title {
+  margin-bottom: 1rem;
+  font-size: 2.5rem;
+}
+
+.title--date {
+  font-size: 1.5rem;
+  font-weight: normal;
+}
+
+.--bold {
+  font-weight: 600;
+}
+
+/* TO-DO FORM */
+.form--add {
+  border: 2px solid black;
+  padding: 0.5rem 1rem;
+
+  width: 40%;
+}
+
+.form--divs {
+  display: flex;
+  flex-direction: column;
+}
+
+.form__input--title {
+  height: 1.5rem;
+}
+
+.form__textarea {
+  resize: none;
+}
+
+.form__label {
+  font-size: 21px;
+}
+
+.form__button--div {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.form__button {
+  height: 2rem;
+  width: 45%;
+  font-size: 1.25rem;
+}
+
+.form--spacing {
+  margin: 0.5rem 0;
+}
+
+/* TO-DO LIST */
+.list--add {
+  margin: 1rem 2rem;
 }

@@ -8,10 +8,36 @@
     <link rel="stylesheet" href="/css/app.css">
 </head>
 <body>
-    <nav>
-        <h1>To-Do List</h1>
-        <span><%= day %> </span>
-    </nav>
+    <main>
+        <nav class="nav__div">
+            <h1 class="title">To-Do List</h1>
+            <h2 class="title--date">Today is <span class="--bold"><%= day %></span></h2>
+        </nav>
     
+        <article class="form--add">
+            <form action="/" method="post">
+                <div class="form--divs">
+                    <label for="title" class="form--spacing form__label">Title:</label>
+                    <input name="title" type="text" class="form__input--title">
+                </div>
+                <div class="form--divs">
+                    <label for="description" class="form--spacing form__label">Description:</label>
+                    <textarea name="description" id="textDescription" cols="15" rows="5" class="form__textarea"></textarea>
+                    <div class="form__button--div form--spacing">
+                        <button type="submit" class="form__button">Add</button>
+                        <button type="button" class="form__button">Close</button>
+                    </div>
+                </div>
+            </form>
+        </article>
+
+        <section class="list--add">
+            <ul>
+                <li>Buy Food</li>
+                <li>Cook Food</li>
+                <li>Eat Food</li>
+            </ul>
+        </section>
+    </main>
 </body>
 </html>
