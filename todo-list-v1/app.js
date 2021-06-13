@@ -1,49 +1,28 @@
 const express = require(`express`)
 const path = require(`path`)
 const bodyParser = require(`body-parser`)
-
 const app = express()
-
 
 app.set(`view engine`, `ejs`)
 app.set(`views`, path.join(__dirname + `/views`))
+app.use(express.static(__dirname + "/public"))
 
 app.get(`/`, (req,res) => {
     const _date = new Date()
-    const currentDay = _date.getDay()
-    let day = ""
     let kindOfDay = ""
 
-    switch (currentDay) {
-        case 0:
-            day = `Sunday`
-            break
-        case 1:
-            day = `Monday`
-            break
-        case 2:
-            day = `Tuesday`
-            break
-        case 3:
-            day = `Wednesday`
-            break
-        case 4:
-            day = `Thursday`
-            break
-        case 5:
-            day = `Friday`
-            break
-        case 6:
-            day = `Saturday`
-            break
-        default:
-            console.log(`Error: Current day is equal to` + currentDay)
-        }
+    const options = {
+        weekday: "long",
+        day: "numeric",
+        month: "long"
+    }
 
-    if(currentDay === 6 || currentDay === 0) {
-        kindOfDay = "Weekend"
+    const day = _date.toLocaleDateString("en-UK", options)
+
+    if (_date.getDay() === 0 || _date.getDay() === 6) {
+        kindOfDay = "weekend"
     } else {
-        kindOfDay = "Weekday"
+        kindOfDay = "weekday"
     }
 
     res.render(`days/list`, 
