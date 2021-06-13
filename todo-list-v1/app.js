@@ -17,13 +17,6 @@ app.get(`/`, (req,res) => {
         month: "long"
     }
 
-    const list = [
-        {
-            title: `fix car`,
-            description: `change suspension and brakes.`
-        },
-    ]
-
     const day = _date.toLocaleDateString("en-UK", options)
 
     if (_date.getDay() === 0 || _date.getDay() === 6) {

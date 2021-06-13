@@ -6,12 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title> To-Do List</title>
     <link rel="stylesheet" href="/css/app.css">
+    <script defer src="/js/app.js"></script>
 </head>
 <body>
     <main>
         <nav class="nav__div">
-            <h1 class="title">To-Do List</h1>
-            <h2 class="title--date">Today is <span class="--bold"><%= day %></span></h2>
+                <h1 class="title">To-Do List</h1>
+                <h2 class="title--date">Today is <span class="--bold"><%= day %></span></h2>
         </nav>
     
         <article class="form--add">
@@ -25,7 +26,7 @@
                     <textarea name="description" id="textDescription" cols="15" rows="5" class="form__textarea"></textarea>
                     <div class="form__button--div form--spacing">
                         <button type="submit" class="form__button">Add</button>
-                        <button type="button" class="form__button">Close</button>
+                        <button type="submit" class="form__button button--close">Close</button>
                     </div>
                 </div>
             </form>
@@ -38,6 +39,8 @@
                 <li>Eat Food</li>
             </ul>
         </section>
+
+        <button class="form__button button--reveal">Add Task</button>
     </main>
 </body>
 </html>
