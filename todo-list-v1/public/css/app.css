@@ -39,7 +39,7 @@ main {
   border: 2px solid black;
   display: none;
   padding: 0.5rem 1rem;
-  width: 40%;
+  width: 50%;
 }
 
 .form--divs {
@@ -48,11 +48,13 @@ main {
 }
 
 .form__input--title {
-  height: 1.5rem;
+  height: 2rem;
+  padding-left: 0.5rem;
 }
 
 .form__textarea {
   resize: none;
+  padding: 0.5rem 0.5rem;
 }
 
 .form__label {

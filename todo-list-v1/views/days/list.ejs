@@ -19,11 +19,11 @@
             <form action="/" method="post">
                 <div class="form--divs">
                     <label for="title" class="form--spacing form__label">Title:</label>
-                    <input name="title" type="text" class="form__input--title">
+                    <input id="title" name="title" type="text" class="form__input--title">
                 </div>
                 <div class="form--divs">
                     <label for="description" class="form--spacing form__label">Description:</label>
-                    <textarea name="description" id="textDescription" cols="15" rows="5" class="form__textarea"></textarea>
+                    <textarea name="description" id="textDescription" cols="20" rows="3" class="form__textarea"></textarea>
                     <div class="form__button--div form--spacing">
                         <button type="submit" class="form__button">Add</button>
                         <button type="submit" class="form__button button--close">Close</button>
@@ -34,9 +34,11 @@
 
         <section class="list--add">
             <ul>
-                <li>Buy Food</li>
-                <li>Cook Food</li>
-                <li>Eat Food</li>
+                <% listItems.forEach(item => { %>
+                    <li>
+                        <%= item.title %> | <%= item.description %> 
+                    </li>
+                <% }) %>
             </ul>
         </section>
 
